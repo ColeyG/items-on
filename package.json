@@ -1,0 +1,15 @@
+{
+  "name": "Items On",
+  "version": "1.0.0",
+  "description": "A game for all folks",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/ColeyG/items-on",
+  "author": "Cole Geerts & Carter Geerts",
+  "license": "All Rights Reserved",
+  "devDependencies": {
+    "electron": "^4.1.1"
+  }
+}
