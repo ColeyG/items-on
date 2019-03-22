@@ -8,8 +8,9 @@
   },
   "repository": "https://github.com/ColeyG/items-on",
   "author": "Cole Geerts & Carter Geerts",
-  "license": "All Rights Reserved",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "^4.1.1"
+    "electron": "^4.1.1",
+    "excalibur": "^0.21.0"
   }
 }
