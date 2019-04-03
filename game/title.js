@@ -8,7 +8,7 @@ class Title {
         console.log('initialized');
     }
     toTitleScreen() {
-        game.goToScene('titleScreen');
+        this.game.goToScene('titleScreen');
         console.log('went to');
     }
 }
