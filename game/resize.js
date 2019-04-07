@@ -1,19 +1,19 @@
-window.addEventListener("resize", () => {
-    gameCanvas.width = window.innerWidth
-    if (window.innerHeight * 1.777 > window.innerWidth) {
-        gameCanvas.style.width = window.innerWidth + "px"
-        gameCanvas.style.height = window.innerWidth / 1.777 + "px"
-    } else {
-        gameCanvas.style.height = window.innerHeight + "px"
-        gameCanvas.style.width = window.innerHeight * 1.777 + "px"
-    }
-});
+let gameCanvas = document.querySelector("#gameCanvas");
 
-gameCanvas.width = window.innerWidth
-if (window.innerHeight * 1.777 > window.innerWidth) {
-    gameCanvas.style.width = window.innerWidth + "px"
-    gameCanvas.style.height = window.innerWidth / 1.777 + "px"
-} else {
-    gameCanvas.style.height = window.innerHeight + "px"
-    gameCanvas.style.width = window.innerHeight * 1.777 + "px"
+function resize() {
+    if (window.innerHeight * 1.7778 > window.innerWidth) {
+        let gameSizeCoefficent = window.innerWidth / 1920;
+        gameCanvas.style.transform = "scale(" + gameSizeCoefficent + ")";
+        gameCanvas.style.marginTop = (window.innerHeight - (gameCanvas.offsetHeight * gameSizeCoefficent)) / 2 + "px";
+        gameCanvas.style.marginLeft = "0px";
+    } else {
+        let gameSizeCoefficent = window.innerHeight / 1080;
+        gameCanvas.style.transform = "scale(" + gameSizeCoefficent + ")";
+        gameCanvas.style.marginLeft = (window.innerWidth - (gameCanvas.offsetWidth * gameSizeCoefficent)) / 2 + "px";
+        gameCanvas.style.marginTop = "0px";
+    }
 }
+
+window.addEventListener("resize", resize);
+
+resize();

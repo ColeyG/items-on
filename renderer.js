@@ -3,7 +3,7 @@ const Title = require('./game/title');
 let gameCanvas = document.querySelector("#gameCanvas");
 let game = new ex.Engine({
     canvasElementId: 'gameCanvas',
-    displayMode: ex.DisplayMode.Container
+    displayMode: 'container'
 });
 const titleScreen = new Title(game);
 

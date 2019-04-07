@@ -1,14 +1,9 @@
 body{
-    overflow: hidden;
     background-color: #161616;
+    overflow: hidden;
 }
-.canvas-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.test{
-    width:10px;
-    height:10px;
-    background-color: red;
+
+#gameCanvas{
+    transform-origin: top left;
+    transform:scale(1);
 }
