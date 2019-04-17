@@ -10,8 +10,8 @@ const Title = require('./game/title');
 const titleScreen = new Title(game);
 const Match = require('./game/match');
 const matchScreen = new Match(game);
-const Controls = require('./game/controls');
-const PlayerOneControls = new Controls('playerOne', game);
+const Player = require('./game/controls');
+const PlayerOne = new Player('playerOne', game);
 
 game.start().then(() => {
     titleScreen.initTitleScreen();
@@ -28,7 +28,7 @@ game.start().then(() => {
     game.add(ball2);
 
     //PlayerOneControls.update(game);
-    game.add(PlayerOneControls);
+    game.add(PlayerOne);
 
     if (game.input.keyboard.wasPressed(ex.Input.Keys.R)) {
         console.log('asg');

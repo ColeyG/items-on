@@ -1,4 +1,4 @@
-class Controls extends ex.Actor {
+class Player extends ex.Actor {
     constructor(player, game) {
         super();
         this.player = player;
@@ -12,4 +12,4 @@ class Controls extends ex.Actor {
     }
 }
 
-module.exports = Controls;
+module.exports = Player;
