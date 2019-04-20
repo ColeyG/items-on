@@ -12,9 +12,10 @@ class Player extends ex.Actor {
         this.speed = 0;
     }
     update(engine, delta) {
+        ex.Actor.prototype.update.call(this, engine, delta);
 
-        if (this.speed > 15) {
-            this.speed = 15;
+        if (this.speed > 10) {
+            this.speed = 10;
         }
 
         if (!engine.input.keyboard.isHeld(ex.Input.Keys.A) && !engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
@@ -25,12 +26,11 @@ class Player extends ex.Actor {
             this.speed = 0;
         }
 
-        ex.Actor.prototype.update.call(this, engine, delta);
         if (engine.input.keyboard.isHeld(ex.Input.Keys.W)) {
-            this.velY = -10;
+            this.velY = -5;
         }
         if (engine.input.keyboard.isHeld(ex.Input.Keys.A) || engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-            this.speed++;
+            this.speed = this.speed + 0.25;
         }
         if (engine.input.keyboard.isHeld(ex.Input.Keys.A)) {
             this.x = this.x - this.speed;
