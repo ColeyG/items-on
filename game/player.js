@@ -7,22 +7,47 @@ class Player extends ex.Actor {
         this.y = y;
         this.velX = 0;
         this.velY = 0;
+        this.collisionType = ex.CollisionType.Active;
+        this.checkForFastBodies = true;
+        this.speed = 0;
     }
     update(engine, delta) {
+
+        if (this.speed > 15) {
+            this.speed = 15;
+        }
+
+        if (!engine.input.keyboard.isHeld(ex.Input.Keys.A) && !engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
+            this.speed = 0;
+        }
+
+        if (engine.input.keyboard.isHeld(ex.Input.Keys.A) && engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
+            this.speed = 0;
+        }
+
         ex.Actor.prototype.update.call(this, engine, delta);
         if (engine.input.keyboard.isHeld(ex.Input.Keys.W)) {
-            this.velY--;
+            this.velY = -10;
+        }
+        if (engine.input.keyboard.isHeld(ex.Input.Keys.A) || engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
+            this.speed++;
         }
         if (engine.input.keyboard.isHeld(ex.Input.Keys.A)) {
-            this.velX--;
-        }
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.S)) {
-            this.velY++;
+            this.x = this.x - this.speed;
         }
         if (engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-            this.velX++;
+            this.x = this.x + this.speed;
         }
-        this.x = this.x + this.velX;
+
+        if (this.velY > 0) {
+            console.log('fired');
+            this.velY = 35;
+        }
+
+        this.on('precollision', () => {
+            this.velY = 0;
+        })
+
         this.y = this.y + this.velY;
     }
 }
