@@ -9,45 +9,41 @@ class Player extends ex.Actor {
         this.velY = 0;
         this.collisionType = ex.CollisionType.Active;
         this.checkForFastBodies = true;
-        this.speed = 0;
+        this.acceleration = 30;
+        this.maxVel = 15;
     }
     update(engine, delta) {
         ex.Actor.prototype.update.call(this, engine, delta);
+        let tickSeconds = delta / 1000;
 
-        if (this.speed > 10) {
-            this.speed = 10;
-        }
-
-        if (!engine.input.keyboard.isHeld(ex.Input.Keys.A) && !engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-            this.speed = 0;
-        }
-
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.A) && engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-            this.speed = 0;
+        if (this.velX > this.maxVel) {
+            this.velX = this.maxVel;
+        } else if (((this.velX) * (-1)) > this.maxVel) {
+            this.velX = this.maxVel * (-1);
         }
 
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.W)) {
-            this.velY = -5;
-        }
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.A) || engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-            this.speed = this.speed + 0.25;
-        }
         if (engine.input.keyboard.isHeld(ex.Input.Keys.A)) {
-            this.x = this.x - this.speed;
-        }
-        if (engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
-            this.x = this.x + this.speed;
+            if (this.velX > 0) { this.velX = 0 }
+            this.velX = this.velX - this.acceleration * tickSeconds;
         }
 
-        if (this.velY > 0) {
-            console.log('fired');
-            this.velY = 35;
+        if (engine.input.keyboard.isHeld(ex.Input.Keys.D)) {
+            if (this.velX < 0) { this.velX = 0 }
+            this.velX = this.velX + this.acceleration * tickSeconds;
+        }
+
+        if (!engine.input.keyboard.isHeld(ex.Input.Keys.D) && !engine.input.keyboard.isHeld(ex.Input.Keys.A)) {
+            this.velX = this.velX * 0.25;
+            if (this.velX > 1) {
+                this.velX = 0;
+            }
         }
 
         this.on('precollision', () => {
             this.velY = 0;
         })
 
+        this.x = this.x + this.velX;
         this.y = this.y + this.velY;
     }
 }
