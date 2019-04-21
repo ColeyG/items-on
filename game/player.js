@@ -9,9 +9,9 @@ class Player extends ex.Actor {
         this.velY = 0;
         this.collisionType = ex.CollisionType.Active;
         this.checkForFastBodies = true;
-        this.xAcceleration = 30;
+        this.xAcceleration = 1500;
         this.jumpHeight = 400;
-        this.maxVel = 15;
+        this.maxVel = 1000;
     }
     update(engine, delta) {
         ex.Actor.prototype.update.call(this, engine, delta);
@@ -52,7 +52,7 @@ class Player extends ex.Actor {
             this.velY = 0;
         })
 
-        this.x = this.x + this.velX;
+        this.x = this.x + (this.velX * tickSeconds);
         this.y = this.y + (this.velY * tickSeconds);
     }
 }
