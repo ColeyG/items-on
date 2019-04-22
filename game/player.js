@@ -1,6 +1,6 @@
 class Player extends ex.Actor {
     constructor(player, game, x, y) {
-        super(x, y, 40, 65);
+        super(x, y, 80, 140);
         this.player = player;
         this.game = game;
         this.x = x;
@@ -10,7 +10,7 @@ class Player extends ex.Actor {
         this.collisionType = ex.CollisionType.Active;
         this.checkForFastBodies = true;
         this.xAcceleration = 1500;
-        this.jumpHeight = 600;
+        this.jumpHeight = 800;
         this.fastFall = 600;
         this.jumpState = false;
         this.maxVel = 1000;
