@@ -10,7 +10,9 @@ class Player extends ex.Actor {
         this.collisionType = ex.CollisionType.Active;
         this.checkForFastBodies = true;
         this.xAcceleration = 1500;
-        this.jumpHeight = 400;
+        this.jumpHeight = 600;
+        this.fastFall = 600;
+        this.jumpState = false;
         this.maxVel = 1000;
     }
     update(engine, delta) {
@@ -40,16 +42,26 @@ class Player extends ex.Actor {
             }
         }
 
-        if (engine.input.keyboard.wasPressed(ex.Input.Keys.W)) {
+        if (engine.input.keyboard.wasPressed(ex.Input.Keys.W) && this.jumpState == false) {
             this.velY = (-1 * this.jumpHeight);
+            this.jumpState = true;
+        }
+
+        if (engine.input.keyboard.wasReleased(ex.Input.Keys.W) && this.jumpState == true) {
+            this.velY = this.velY / 2;
+        }
+
+        if (engine.input.keyboard.wasPressed(ex.Input.Keys.S)) {
+            this.velY = this.fastFall;
         }
 
         if (engine.input.keyboard.wasPressed(ex.Input.Keys.K)) {
-            console.log(this.velY);
+            console.log(this);
         }
 
         this.on('collisionstart', () => {
             this.velY = 0;
+            this.jumpState = false;
         })
 
         this.x = this.x + (this.velX * tickSeconds);
