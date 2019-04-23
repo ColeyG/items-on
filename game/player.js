@@ -44,7 +44,7 @@ class Player extends ex.Actor {
 
         if (engine.input.keyboard.wasPressed(ex.Input.Keys.W) && this.jumpState == false) {
             this.velY = (-1 * this.jumpHeight);
-            this.jumpState = true; a
+            this.jumpState = true;
         }
 
         if (engine.input.keyboard.wasReleased(ex.Input.Keys.W) && this.jumpState == true) {
