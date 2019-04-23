@@ -14,10 +14,19 @@ class Player extends ex.Actor {
         this.fastFall = 600;
         this.jumpState = false;
         this.maxVel = 1000;
+        this.friction = 40;
     }
     update(engine, delta) {
         ex.Actor.prototype.update.call(this, engine, delta);
         let tickSeconds = delta / 1000;
+
+        if (this.velX > 0 && this.velY == 0 && this.velX) {
+            this.setDrawing('runningRight');
+        }
+
+        if (this.velX < 0 && this.velY == 0 && this.velX) {
+            this.setDrawing('runningLeft');
+        }
 
         if (this.velX > this.maxVel) {
             this.velX = this.maxVel;
@@ -36,8 +45,12 @@ class Player extends ex.Actor {
         }
 
         if (!engine.input.keyboard.isHeld(ex.Input.Keys.D) && !engine.input.keyboard.isHeld(ex.Input.Keys.A)) {
-            this.velX = this.velX * 0.25;
-            if (this.velX > 1) {
+            this.velX = this.velX * this.friction * tickSeconds;
+            this.setDrawing('stopping');
+            if (this.velX > 0 && this.velX < 1) {
+                this.velX = 0;
+            }
+            if (this.velX < 0 && this.velX > -1) {
                 this.velX = 0;
             }
         }
@@ -57,7 +70,10 @@ class Player extends ex.Actor {
 
         if (engine.input.keyboard.wasPressed(ex.Input.Keys.K)) {
             console.log(this);
-            this.setDrawing('running');
+        }
+
+        if (this.velX === 0 && this.velY === 0) {
+            this.setDrawing('standing');
         }
 
         this.on('collisionstart', () => {

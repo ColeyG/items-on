@@ -31,7 +31,9 @@ game.start(loader).then(() => {
     ex.Physics.acc.setTo(0, 1000);
 
     playerOne.addDrawing('standing', loadedAssets.testCharStanding);
-    playerOne.addDrawing('running', loadedAssets.testCharRunning);
+    playerOne.addDrawing('stopping', loadedAssets.testCharStanding);
+    playerOne.addDrawing('runningRight', loadedAssets.testCharRunningRight);
+    playerOne.addDrawing('runningLeft', loadedAssets.testCharRunningLeft);
     game.add(playerOne);
     game.add(ground);
 });
