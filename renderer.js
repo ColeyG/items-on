@@ -25,9 +25,6 @@ game.start(loader).then(() => {
     titleScreen.initTitleScreen();
     titleScreen.toTitleScreen();
 
-    let ball = new ex.Actor(150, 50, 50, 50);
-    ball.color = ex.Color.Blue
-    game.add(ball);
     matchScreen.initMatchScreen();
     matchScreen.toMatchScreen();
 
