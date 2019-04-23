@@ -15,9 +15,17 @@ const Platform = require('./game/platform');
 let ground = new Platform(game, 1920 / 2, 1060, 1500, 30);
 ground.color = ex.Color.LightGray;
 
-game.start().then(() => {
+//loading assets
+var testCharTx = new ex.Texture('./assets/test-char-resize.png');
+var loader = new ex.Loader([testCharTx]);
+
+game.start(loader).then(() => {
     titleScreen.initTitleScreen();
     titleScreen.toTitleScreen();
+
+    var testCharSp = new ex.SpriteSheet(testCharTx, 10, 1, 80, 128);
+    var testCharRunning = testCharSp.getAnimationByIndices(game, [2, 3, 4, 5, 6, 7, 8], 125);
+    var testCharStanding = testCharSp.getAnimationByIndices(game, [0], 0);
 
     let ball = new ex.Actor(150, 50, 50, 50);
     ball.color = ex.Color.Blue
@@ -28,6 +36,8 @@ game.start().then(() => {
     ex.Physics.acc.setTo(0, 1000);
 
     playerOne.color = ex.Color.Red;
+    playerOne.addDrawing('standing', testCharStanding);
+    playerOne.addDrawing('running', testCharRunning);
     game.add(playerOne);
     game.add(ground);
 });

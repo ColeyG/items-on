@@ -57,6 +57,7 @@ class Player extends ex.Actor {
 
         if (engine.input.keyboard.wasPressed(ex.Input.Keys.K)) {
             console.log(this);
+            this.setDrawing('running');
         }
 
         this.on('collisionstart', () => {
