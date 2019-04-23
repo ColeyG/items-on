@@ -1,6 +1,6 @@
 class Player extends ex.Actor {
     constructor(player, game, x, y) {
-        super(x, y, 80, 140);
+        super(x, y, 80, 128);
         this.player = player;
         this.game = game;
         this.x = x;
