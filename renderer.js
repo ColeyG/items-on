@@ -25,7 +25,7 @@ game.start().then(() => {
     matchScreen.initMatchScreen();
     matchScreen.toMatchScreen();
 
-    ex.Physics.acc.setTo(0, 700);
+    ex.Physics.acc.setTo(0, 1000);
 
     playerOne.color = ex.Color.Red;
     game.add(playerOne);

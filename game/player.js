@@ -10,7 +10,7 @@ class Player extends ex.Actor {
         this.collisionType = ex.CollisionType.Active;
         this.checkForFastBodies = true;
         this.xAcceleration = 1500;
-        this.jumpHeight = 800;
+        this.jumpHeight = 600;
         this.fastFall = 600;
         this.jumpState = false;
         this.maxVel = 1000;
@@ -44,7 +44,7 @@ class Player extends ex.Actor {
 
         if (engine.input.keyboard.wasPressed(ex.Input.Keys.W) && this.jumpState == false) {
             this.velY = (-1 * this.jumpHeight);
-            this.jumpState = true;
+            this.jumpState = true; a
         }
 
         if (engine.input.keyboard.wasReleased(ex.Input.Keys.W) && this.jumpState == true) {
