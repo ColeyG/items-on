@@ -19,6 +19,13 @@ ground.color = ex.Color.LightGray;
 const LoadQueue = require('./asset-loading/load-queue');
 const loadedAssets = new LoadQueue(game);
 var loader = new ex.Loader(loadedAssets.load());
+loader.logo = './assets/SlimeA.png';
+loader.backgroundColor = 'red';
+loader.startButtonFactory = () => {
+    let myButton = document.createElement('button');
+    myButton.textContent = 'The best button';
+    return myButton;
+};
 loadedAssets.createSheets();
 
 game.start(loader).then(() => {
