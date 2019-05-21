@@ -32,7 +32,6 @@ loader.startButtonFactory = () => {
   button.style.padding = "10px";
   button.style.borderRadius = "5px";
   button.style.fontFamily = "'Varela Round', sans-serif";
-  button.style.left = "40px !important";
   console.log(button.parentElement);
   return button;
 };
