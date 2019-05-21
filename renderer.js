@@ -2,7 +2,7 @@ const fs = require("fs");
 
 let game = new ex.Engine({
   canvasElementId: "gameCanvas",
-  displayMode: "container"
+  displayMode: "container",
 });
 
 const Title = require("./game/title");
@@ -20,12 +20,23 @@ const LoadQueue = require("./asset-loading/load-queue");
 const loadedAssets = new LoadQueue(game);
 var loader = new ex.Loader(loadedAssets.load());
 loader.logo = "./assets/SlimeA.png";
-loader.backgroundColor = "red";
+loader.backgroundColor = "#161616";
+
 loader.startButtonFactory = () => {
-  let myButton = document.createElement("button");
-  myButton.textContent = "The best button";
-  return myButton;
+  let button = document.createElement("button");
+  button.textContent = "Start";
+  button.style.width = "100px";
+  button.style.border = "none";
+  button.style.color = "white";
+  button.style.backgroundColor = "#D36582";
+  button.style.padding = "10px";
+  button.style.borderRadius = "5px";
+  button.style.fontFamily = "'Varela Round', sans-serif";
+  button.style.left = "40px !important";
+  console.log(button.parentElement);
+  return button;
 };
+
 loadedAssets.createSheets();
 
 game.start(loader).then(() => {
